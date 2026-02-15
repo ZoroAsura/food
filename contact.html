@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      color: #f4e1b6; 
+      background-color: rgb(173, 216, 230);
+      overflow: hidden;
+      background-image: url(slide1.jpeg);
+      background-position: center;
+      
+    }
+
+    form {
+      position: absolute;
+      left: 50%;
+      z-index: 10;
+      background-color: rgb(4, 35, 46); 
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      width: 400px;
+      color: #fff;
+    }
+
+    h1 {
+      color: #f4c542; 
+      margin-bottom: 10px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+
+    p {
+      position: absolute;
+      left: 30%;
+      font-size: 20px;
+      color: #e6d5a4; 
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #d3b76a; 
+    }
+
+    .outline {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 2px solid #b49b5e; 
+      border-radius: 10px;
+      font-size: 14px;
+      background-color: rgba(255,255,255,0.08);
+      color: #fff;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .outline:focus {
+      border-color: #f4c542; 
+      box-shadow: 0 0 10px #f4c542;
+      outline: none;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    #submit {
+      background-color: #7b1fa2; 
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: 0.3s;
+    }
+
+    #submit:hover {
+      background-color: #9b30ff; 
+      transform: scale(1.05);
+      box-shadow: 0 0 12px #f4c542;
+    }
+
+    #blur {
+      z-index: -1;
+      color: #f4c542;
+      background-color: rgba(10, 0, 20, 0.8);
+      width: 100%;
+      font-size: 40px;
+      bottom: 0;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+    }
+ .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+
+    .popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-content {
+      background: #0a2b33;
+      color: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(244, 197, 66, 0.5);
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+      max-width: 400px;
+      width: 80%;
+    }
+
+    .popup.active .popup-content {
+      transform: scale(1);
+    }
+
+    .popup-content h2 {
+      color: #f4c542;
+      margin-bottom: 10px;
+    }
+
+    .popup-content p {
+      color: #d3b76a;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      background-color: #7b1fa2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .close-btn:hover {
+      background-color: #9b30ff;
+      box-shadow: 0 0 10px #f4c542;
+    }
+    /* === NAVBAR === */
+.navvbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #8B5E3C;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.phase {
+  font-size: 80px;
+  color: #FFFFFF;
+  font-family: "Brush Script MT";
+  width: fit-content;
+}
+
+.icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.bar1 {
+  font-size: 35px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+#icon1 {
+  font-size: 30px;
+}
+
+#icon1:hover,
+#icon2:hover,
+#icon3:hover {
+  color: #DCC5A1;
+  transition-duration: 0.5s;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 35px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dropdown .dropcontant {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  display: none;
+  background-color: #8b5e3ce1;
+  min-width: 140px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.dropdown .dropcontant a {
+  text-decoration: none;
+  display: block;
+  color: #FFFFFF;
+  padding: 10px 15px;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown:hover .dropcontant {
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #8b5e3cc4;
+  color: #DCC5A1;
+}
+
+/* === NAVBAR === */
+.navvbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #8B5E3C;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.phase {
+  font-size: 80px;
+  color: #FFFFFF;
+  font-family: "Brush Script MT";
+  width: fit-content;
+}
+
+.icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.bar1 {
+  font-size: 35px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+#icon1 {
+  font-size: 30px;
+}
+
+#icon1:hover,
+#icon2:hover,
+#icon3:hover {
+  color: #DCC5A1;
+  transition-duration: 0.5s;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 35px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dropdown .dropcontant {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  display: none;
+  background-color: #8b5e3ce1;
+  min-width: 140px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.dropdown .dropcontant a {
+  text-decoration: none;
+  display: block;
+  color: #FFFFFF;
+  padding: 10px 15px;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown:hover .dropcontant {
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #8b5e3cc4;
+  color: #DCC5A1;
+}
+
+/* === FOOTER === */
+footer {
+  background-color: #8B5E3C;
+  color: #fff;
+  padding: 40px 20px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section h2,
+.footer-section h3 {
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+.footer-section.links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section.links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section.links ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section.links ul li a:hover {
+  color: #DCC5A1;
+}
+
+.footer-section.social .social-icons a {
+  display: inline-block;
+  margin-right: 15px;
+  color: #fff;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.footer-section.social .social-icons a:hover {
+  color: #DCC5A1;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  padding-top: 10px;
+}
+
+
+
+  </style>
+</head>
+
+<body>
+  <div id="blur">
+       <!-- Navbar -->
+<div class="navvbar" id="navbar">
+  <div class="phase">Food Is Life....</div>
+  <div class="icons">
+    <a href="search.html" class="bar1" id="icon1">Menu</a>
+
+    <div class="dropdown">
+      <button class="bar1" id="icon2">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+      <div class="dropcontant">
+        <a href="index2.html">Home</a>
+        <a href="index.html">Logout</a>
+      </div>
+    </div>
+
+    <a href="contact.html" class="bar1" id="icon3">
+      <i class="fa-regular fa-circle-user"></i>
+    </a>
+  </div>
+</div> 
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you!..</p>
+  </div>
+
+  <form>
+    <label for="name">Full Name:</label><br>
+    <input class="outline" type="text" id="name" name="name" placeholder="Enter your full name" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input class="outline" type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
+
+    <label for="subject">Subject:</label><br>
+    <input class="outline" type="text" id="subject" name="subject" placeholder="Enter subject" required><br><br>
+
+    <label for="message">Feedback:</label><br>
+    <textarea class="outline" id="message" name="message" rows="5" cols="30" placeholder="Write your message here..." required></textarea><br><br>
+
+    <input class="outline" id="submit" type="submit" value="Send Message">
+  </form>
+  
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Thank You!<br>
+      <h3>For Your Message</h3></h2>
+      <button class="close-btn" id="closeBtn">OK</button>
+    </div>
+  </div>
+ 
+</body>
+<script>
+    const form = document.querySelector("form");
+    const popup = document.getElementById("popup");
+    const closeBtn = document.getElementById("closeBtn");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      popup.classList.add("active");
+      form.reset();
+    });
+
+    closeBtn.addEventListener("click", function() {
+      popup.classList.remove("active");
+    });
+
+    popup.addEventListener("click", function(e) {
+      if (e.target === popup) popup.classList.remove("active");
+    });
+  </script>
+</html>

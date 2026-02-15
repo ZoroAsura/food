@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starting Page</title>
+  <link rel="stylesheet" href="stylelogin.css" />
+  <style>
+    /* Simple alert popup styling */
+    .alert-box {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 9999;
+    }
+
+    .alert-box.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .alert-content {
+      background: #0a2b33;
+      color: #fff;
+      padding: 30px 40px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(244, 197, 66, 0.5);
+      transform: scale(0.8);
+      transition: all 0.3s ease;
+      width: 320px;
+    }
+
+    .alert-box.active .alert-content {
+      transform: scale(1);
+    }
+
+    .alert-content h2 {
+      color: #f4c542;
+      margin-bottom: 10px;
+    }
+
+    .alert-content p {
+      color: #d3b76a;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .alert-btn {
+      background-color: #7b1fa2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .alert-btn:hover {
+      background-color: #9b30ff;
+      box-shadow: 0 0 10px #f4c542;
+    }
+
+    .btn a {
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="logo"></div>
+
+  <video autoplay muted loop id="myVideo">
+    <source src="foodbackground.mp4" type="video/mp4" />
+  </video>
+
+  <div class="container">
+    <h1 id="ready">
+      <div class="line">
+        <span><a href="#" id="openLogin">LET'S</a></span>
+        <span><a href="#" id="openLogin2">MAKE</a></span>
+        <span><a href="#" id="openLogin3">IT</a></span>
+      </div>
+    </h1>
+  </div>
+  <div class="popup" id="loginPopup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit" id="loginBtn" class="btn">Login</button>
+      </form>
+      <div class="popup-links">
+        <a href="#" id="forgotLink">Forgot Password?</a>
+        <a href="#" id="signupLink">Sign Up</a>
+      </div>
+    </div>
+  </div>
+  <div class="popup" id="forgotPopup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h2>Forgot Password</h2>
+      <p>Enter your registered email to reset your password.</p>
+      <form id="forgotForm">
+        <input type="email" placeholder="Enter your email" required />
+        <button type="submit" class="btn">Send Reset Link</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="signupPopup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h2>Sign Up</h2>
+      <form id="signupForm">
+        <input type="text" placeholder="Username" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit" class="btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert-box" id="alertBox">
+    <div class="alert-content">
+      <h2>Success!</h2>
+      <p id="alertMsg">Message goes here</p>
+      <button class="alert-btn" id="alertClose">OK</button>
+    </div>
+  </div>
+
+  <script>
+  const loginPopup = document.getElementById("loginPopup");
+  const forgotPopup = document.getElementById("forgotPopup");
+  const signupPopup = document.getElementById("signupPopup");
+  const alertBox = document.getElementById("alertBox");
+  const alertMsg = document.getElementById("alertMsg");
+  const alertClose = document.getElementById("alertClose");
+
+  let redirectURL = null; // store redirect link if needed
+
+  // Open login popup
+  document.querySelectorAll("#openLogin, #openLogin2, #openLogin3").forEach(btn => {
+    btn.addEventListener("click", () => loginPopup.classList.add("show"));
+  });
+
+  // Close popups
+  document.querySelectorAll(".close").forEach(closeBtn => {
+    closeBtn.addEventListener("click", () => {
+      [loginPopup, forgotPopup, signupPopup].forEach(p => p.classList.remove("show"));
+    });
+  });
+
+  // Switch between popups
+  document.getElementById("forgotLink").onclick = () => {
+    loginPopup.classList.remove("show");
+    forgotPopup.classList.add("show");
+  };
+
+  document.getElementById("signupLink").onclick = () => {
+    loginPopup.classList.remove("show");
+    signupPopup.classList.add("show");
+  };
+
+  // Close popup if clicking outside
+  window.onclick = (e) => {
+    [loginPopup, forgotPopup, signupPopup].forEach(p => {
+      if (e.target === p) p.classList.remove("show");
+    });
+  };
+
+  // Alert functions
+  function showAlert(message, redirect = null) {
+    alertMsg.textContent = message;
+    alertBox.classList.add("active");
+    redirectURL = redirect;
+  }
+
+  alertClose.onclick = () => {
+    alertBox.classList.remove("active");
+    if (redirectURL) window.location.href = redirectURL; // go to page if provided
+  };
+
+  // Login form
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    loginPopup.classList.remove("show");
+    showAlert("You have successfully logged in!", "index2.html");
+  });
+
+  // Signup form
+  document.getElementById("signupForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    signupPopup.classList.remove("show");
+    showAlert("You have successfully signed up!", "index2.html");
+  });
+
+  // Forgot password form
+  document.getElementById("forgotForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    forgotPopup.classList.remove("show");
+    showAlert("A password reset link has been sent to your email!");
+  });
+</script>
+
+</body>
+</html>
+

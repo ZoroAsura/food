@@ -1,0 +1,90 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  color: #f4e1b6; 
+  background-color: rgba(175, 73, 90, 0.705);
+  overflow: hidden;
+}
+
+form {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  background-color: rgba(175, 73, 90, 0.185); 
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+  width: 400px;
+  color: #fff;
+}
+
+h1 {
+  color: #f4c542; /* rich gold */
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+p {
+  position: absolute;
+  left: 30%;
+  font-size: 20px;
+  color: #e6d5a4; /* soft gold text */
+  margin-bottom: 25px;
+}
+
+label {
+  font-weight: 600;
+  color: #d3b76a; /* muted antique gold */
+}
+
+.outline {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 2px solid #b49b5e; /* goldish border */
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: rgba(255,255,255,0.08);
+  color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.outline:focus {
+  border-color: #f4c542; /* glowing gold */
+  box-shadow: 0 0 10px #f4c542;
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+#submit {
+  background-color: #7b1fa2; /* royal purple */
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.3s;
+}
+
+#submit:hover {
+  background-color: #9b30ff; /* brighter royal glow */
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #f4c542;
+}
+
+#blur {
+  z-index: 9;
+  color: #f4c542;
+  background-color: rgba(10, 0, 20, 0.8);
+  width: 100%;
+  font-size: 40px;
+  bottom: 0;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
